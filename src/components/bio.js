@@ -22,7 +22,7 @@ function Bio() {
               alt={author}
               style={{
                 marginRight: rhythm(1 / 2),
-                marginBottom: 0,
+                marginBottom: 25,
                 minWidth: 50,
                 borderRadius: `100%`
               }}
@@ -31,8 +31,7 @@ function Bio() {
               }}
             />
             <p>
-              Hello I'm <strong>{author}</strong> I'm not a robot, I'm just like
-              you.
+              I'm not a robot, I'm just like you.
               {` `}
               <a href={`https://twitter.com/${social.twitter}`}>
                 You can follow me on Twitter

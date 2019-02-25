@@ -6,6 +6,8 @@ module.exports = {
     siteUrl: `http://localhost:8000/`,
     social: {
       twitter: `maffsojah`
+      // github: `maffsojah`,
+      // email: `maffsojah1@gmail.com`
     }
   },
   plugins: [

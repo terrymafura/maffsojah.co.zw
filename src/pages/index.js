@@ -12,7 +12,7 @@ const ListLink = props => (
   </li>
 );
 
-class BlogIndex extends React.Component {
+class Intro extends React.Component {
   render() {
     const { data } = this.props;
     const siteTitle = data.site.siteMetadata.title;
@@ -34,7 +34,7 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default BlogIndex;
+export default Intro;
 
 export const pageQuery = graphql`
   query {
