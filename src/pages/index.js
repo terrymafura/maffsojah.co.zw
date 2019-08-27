@@ -1,61 +1,40 @@
-import React from "react";
-import { graphql, Link } from "gatsby";
+import React from "react"
+import { Link } from "gatsby"
 
-import Bio from "../components/bio";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-// import { rhythm } from "../utils/typography";
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import Button from "../components/button"
 
-const ListLink = props => (
-  <li style={{ display: `inline-block` }}>
-    <Link to={props.to}>{props.children}</Link>
-  </li>
-);
-
-class Intro extends React.Component {
+class IndexPage extends React.Component {
   render() {
-    const { data } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
+    const siteTitle = "Hi, I'm Terry Mafura"
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
-          title="All posts"
+          title="Home"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
-        <Bio />
-        <ul>
-          <ListLink to="/blog">Blog</ListLink>
-          <ListLink>About</ListLink>
-          <ListLink>Projects</ListLink>
-        </ul>
+        <img style={{ margin: 0 }} src="./GatsbyScene.svg" alt="Gatsby Scene" />
+        <h1>
+          Hey people{" "}
+          <span role="img" aria-label="wave emoji">
+            {" "}
+            👋
+          </span>
+        </h1>
+        <p>Welcome to your new Gatsby website.You are on your home page.</p>
+        <p>
+          This starter comes out of the box with styled components and Gatsby 's
+          default starter blog running on Netlify CMS.
+        </p>
+        <p> Now go build something great! </p>
+        <Link to="/blog/">
+          <Button marginTop="35px">Go to Blog</Button>
+        </Link>
       </Layout>
-    );
+    )
   }
 }
 
-export default Intro;
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-          }
-        }
-      }
-    }
-  }
-`;
+export default IndexPage

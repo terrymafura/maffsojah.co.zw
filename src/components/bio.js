@@ -1,48 +1,50 @@
-import React from "react";
-import { StaticQuery, graphql } from "gatsby";
-import Image from "gatsby-image";
+/**
+ * Bio component that queries for data
+ * with Gatsby's StaticQuery component
+ *
+ * See: https://www.gatsbyjs.org/docs/static-query/
+ */
 
-import { rhythm } from "../utils/typography";
+import React from "react"
+import { StaticQuery, graphql } from "gatsby"
+import Image from "gatsby-image"
+import styled from "styled-components"
+
+import { rhythm } from "../utils/typography"
 
 function Bio() {
   return (
     <StaticQuery
       query={bioQuery}
       render={data => {
-        const { author, social } = data.site.siteMetadata;
+        const { author, social } = data.site.siteMetadata
         return (
-          <div
-            style={{
-              display: `flex`,
-              marginBottom: rhythm(2.5)
-            }}
-          >
+          <Container>
             <Image
               fixed={data.avatar.childImageSharp.fixed}
               alt={author}
               style={{
                 marginRight: rhythm(1 / 2),
-                marginBottom: 25,
+                marginBottom: 0,
                 minWidth: 50,
-                borderRadius: `100%`
+                borderRadius: `100%`,
               }}
               imgStyle={{
-                borderRadius: `50%`
+                borderRadius: `50%`,
               }}
-            />
+            />{" "}
             <p>
-              I'm not a robot, I'm just like you.
-              {` `}
+              Hi, I 'm <strong>{author}.</strong> I' m not a robot, I 'm just
+              like you. {` `}{" "}
               <a href={`https://twitter.com/${social.twitter}`}>
-                You can follow me on Twitter
-              </a>
-              , I'm also fun and useful there
-            </p>
-          </div>
-        );
+                Follow me on Twitter{" "}
+              </a>{" "}
+            </p>{" "}
+          </Container>
+        )
       }}
     />
-  );
+  )
 }
 
 const bioQuery = graphql`
@@ -63,6 +65,10 @@ const bioQuery = graphql`
       }
     }
   }
-`;
+`
 
-export default Bio;
+const Container = styled.div`
+  display: flex;
+`
+
+export default Bio
