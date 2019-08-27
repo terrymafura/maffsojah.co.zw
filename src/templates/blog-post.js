@@ -1,89 +1,88 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-
-import Bio from "../components/bio"
+import { graphql } from "gatsby"
+import styled from "@emotion/styled"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
 
-class BlogPostTemplate extends React.Component {
-  render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+const Content = styled.div`
+  margin: 0 auto;
+  max-width: 860px;
+  padding: 1.45rem 1.0875rem;
+`
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title={post.frontmatter.title}
-          description={post.frontmatter.description || post.excerpt}
-        />
-        <h1>{post.frontmatter.title}</h1>
-        <p
-          style={{
-            ...scale(-1 / 5),
-            display: `block`,
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
-          }}
-        >
-          {post.frontmatter.date}
-        </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <Bio />
+const MarkedHeader = styled.h1`
+  display: inline;
+  border-radius: 1em 0 1em 0;
+  background-image: linear-gradient(
+    -100deg,
+    rgba(255, 250, 150, 0.15),
+    rgba(255, 250, 150, 0.8) 100%,
+    rgba(255, 250, 150, 0.25)
+  );
+`
 
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={`blog${previous.fields.slug}`} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={`blog${next.fields.slug}`} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </Layout>
-    )
+const HeaderDate = styled.h3`
+  margin-top: 10px;
+  color: #606060;
+`
+
+// STYLE THE TAGS INSIDE THE MARKDOWN HERE
+const MarkdownContent = styled.div`
+  a {
+    text-decoration: none;
+    position: relative;
   }
+
+  a::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 70%;
+    left: -0.1px;
+    right: -0.1px;
+    bottom: 0;
+    transition: top 0.1s ease-in-out;
+    background-color: rgba(255, 250, 150, 0.8);
+  }
+
+  a:hover::after {
+    top: 0;
+  }
+`
+
+export default ({ data }) => {
+  const post = data.markdownRemark
+  return (
+    <Layout>
+      <SEO
+        title={post.frontmatter.title}
+        description={post.frontmatter.description || post.excerpt}
+      />
+      <Content>
+        <MarkedHeader>{post.frontmatter.title}</MarkedHeader>
+        <HeaderDate>
+          {post.frontmatter.date} - {post.fields.readingTime.text}
+        </HeaderDate>
+        <MarkdownContent dangerouslySetInnerHTML={{ __html: post.html }} />
+      </Content>
+    </Layout>
+  )
 }
 
-export default BlogPostTemplate
-
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      excerpt(pruneLength: 160)
+  query($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
+      excerpt(pruneLength: 160)
       frontmatter {
+        date(formatString: "DD MMMM, YYYY")
+        path
         title
-        date(formatString: "MMMM DD, YYYY")
-        description
+      }
+      fields {
+        readingTime {
+          text
+        }
       }
     }
   }

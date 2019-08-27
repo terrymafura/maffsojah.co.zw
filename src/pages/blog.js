@@ -1,60 +1,73 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import { css } from "@emotion/core"
+import styled from "@emotion/styled"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
-import Button from "../components/button"
 
-class Blog extends React.Component {
-  render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+const Content = styled.div`
+  margin: 0 auto;
+  max-width: 860px;
+  padding: 1.45rem 1.0875rem;
+`
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="All posts" />
-        <Bio />
-        <div style={{ margin: "20px 0 40px" }}>
-          {posts.map(({ node }) => {
-            const title = node.frontmatter.title || node.fields.slug
-            return (
-              <div key={node.fields.slug}>
-                <h3
-                  style={{
-                    marginBottom: rhythm(1 / 4),
-                  }}
-                >
-                  <Link
-                    style={{ boxShadow: `none` }}
-                    to={`blog${node.fields.slug}`}
-                  >
-                    {title}
-                  </Link>
-                </h3>
-                <small>{node.frontmatter.date}</small>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: node.frontmatter.description || node.excerpt,
-                  }}
-                />
+const ArticleDate = styled.h5`
+  display: inline;
+  color: #606060;
+  margin-bottom: 10px;
+`
+
+const MarkerHeader = styled.h3`
+  display: inline;
+  border-radius: 1em 0 1em 0;
+  margin-bottom: 10px;
+  background-image: linear-gradient(
+    -100deg,
+    rgba(255, 250, 150, 0.15),
+    rgba(255, 250, 150, 0.8) 100%,
+    rgba(255, 250, 150, 0.25)
+  );
+`
+
+const ReadingTime = styled.h5`
+  display: inline;
+  color: #606060;
+  margin-bottom: 10px;
+`
+
+const IndexPage = ({ data }) => {
+  return (
+    <Layout>
+      <SEO title="Blog" />
+      <Content>
+        <h1>Blog</h1>
+        {data.allMarkdownRemark.edges.map(({ node }) => (
+          <div key={node.id}>
+            <Link
+              to={node.frontmatter.path}
+              css={css`
+                text-decoration: none;
+                color: inherit;
+              `}
+            >
+              <MarkerHeader>{node.frontmatter.title} </MarkerHeader>
+              <div>
+                <ArticleDate>{node.frontmatter.date}</ArticleDate>
+                <ReadingTime> - {node.fields.readingTime.text}</ReadingTime>
               </div>
-            )
-          })}
-        </div>
-        <Link to="/">
-          <Button marginTop="85px">Go Home</Button>
-        </Link>
-      </Layout>
-    )
-  }
+              <p>{node.excerpt}</p>
+            </Link>
+          </div>
+        ))}
+      </Content>
+    </Layout>
+  )
 }
 
-export default Blog
+export default IndexPage
 
-export const pageQuery = graphql`
+export const query = graphql`
   query {
     site {
       siteMetadata {
@@ -62,17 +75,22 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      totalCount
       edges {
         node {
-          excerpt
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+            path
+          }
           fields {
             slug
+            readingTime {
+              text
+            }
           }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
-          }
+          excerpt
         }
       }
     }
