@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 const AboutPage = () => (
   <Layout>
     <SEO title="AboutPage" keywords={[`gatsby`, `Terry Mafura`, `react`]} />
-    //CONTENT HERE
+    I'm not a robot, I'm just like you
   </Layout>
 )
 
