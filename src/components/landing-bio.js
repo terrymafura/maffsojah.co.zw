@@ -18,7 +18,7 @@ const OuterContainer = styled.div`
 const Description = styled.p`
   padding: 0;
   margin-bottom: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 `
 
 const NameHeader = styled.h1`
@@ -41,7 +41,7 @@ const LandingBio = () => (
       <OuterContainer>
         <Container>
           <NameHeader>{data.site.siteMetadata.title}</NameHeader>
-          <Description>I 'm not a robot, I'm just like you</Description>
+          <Description>I'm not a robot, I'm just like you</Description>
         </Container>
       </OuterContainer>
     )}
