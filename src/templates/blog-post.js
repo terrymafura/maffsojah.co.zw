@@ -21,7 +21,7 @@ const MarkedHeader = styled.h1`
   ); */}
 `
 
-const HeaderDate = styled.h3`
+const HeaderDate = styled.h4`
   margin-top: 10px;
   color: #606060;
 `
