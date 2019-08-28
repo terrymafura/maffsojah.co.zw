@@ -5,14 +5,16 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const Content = styled.div`
+  display: inline-block;
   margin: 0 auto;
   max-width: 860px;
   padding: 1.45rem 1.0875rem;
 `
 
 const MarkedHeader = styled.h1`
-  display: inline;
+  text-align: center;
   border-radius: 1em 0 1em 0;
+  color: #030b0b;
   ${"" /* background-image: linear-gradient(
     -100deg,
     rgba(255, 250, 150, 0.15),
@@ -21,9 +23,11 @@ const MarkedHeader = styled.h1`
   ); */}
 `
 
-const HeaderDate = styled.h4`
+const HeaderDate = styled.p`
   margin-top: 10px;
-  color: #606060;
+  margin-bottom: 65px;
+  color: #767c7c;
+  text-align: center;
 `
 
 // STYLE THE TAGS INSIDE THE MARKDOWN HERE

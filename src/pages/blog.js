@@ -12,13 +12,16 @@ const Content = styled.div`
   padding: 1.45rem 1.0875rem;
 `
 
-const ArticleDate = styled.h5`
+const ArticleDate = styled.p`
   display: inline;
-  color: #606060;
+  font-size: 15px;
+  color: #767c7c;
+  text-align: center;
   margin-bottom: 10px;
 `
 
 const MarkerHeader = styled.h3`
+  color: #030b0b;
   display: inline;
   border-radius: 1em 0 1em 0;
   margin-bottom: 10px;
@@ -30,9 +33,11 @@ const MarkerHeader = styled.h3`
   ); */}
 `
 
-const ReadingTime = styled.h5`
+const ReadingTime = styled.p`
   display: inline;
-  color: #606060;
+  font-size: 15px;
+  color: #767c7c;
+  text-align: center;
   margin-bottom: 10px;
 `
 
