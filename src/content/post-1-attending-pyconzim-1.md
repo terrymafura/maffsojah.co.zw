@@ -3,6 +3,8 @@ title: "PyconZim 2016 Moments - part 1"
 date: "2017-01-21"
 draft: false
 path: "/blog/attending-pyconzim-1"
+tags: ["pyconZim", "pycon", "zimbabwe"]
+image: banner.png
 ---
 
 ## Part 1...

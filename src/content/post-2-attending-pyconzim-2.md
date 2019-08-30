@@ -3,6 +3,8 @@ title: "PyconZim 2016 Moments - part 2"
 date: "2017-05-05"
 draft: false
 path: "/blog/attending-pyconzim-2"
+tags: ["pyconZim", "pycon", "zimbabwe"]
+image: banner.png
 ---
 
 ## What I learnt at PyconZim

@@ -3,6 +3,8 @@ title: "Code Example"
 date: "2019-06-06"
 draft: true
 path: "/blog/code-example"
+tags: ["pyconZim", "pycon", "zimbabwe"]
+image: banner.png
 ---
 
 ## An Code example with PrismJS
