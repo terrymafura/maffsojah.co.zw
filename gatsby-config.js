@@ -29,6 +29,8 @@ module.exports = {
       options: {
         plugins: [
           `gatsby-remark-reading-time`,
+          `gatsby-remark-smartypants`,
+          `gatsby-plugin-catch-links`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -37,6 +39,22 @@ module.exports = {
                 js: "javascript",
               },
               showLineNumbers: true,
+            },
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating diferent widths of each image.
+              maxWidth: 1200,
+            },
+          },
+          {
+            resolve: `gatsby-remark-external-links`,
+            options: {
+              target: "_blank",
+              rel: "noopener noreferrer",
             },
           },
         ],
